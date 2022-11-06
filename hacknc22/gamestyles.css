@@ -1,0 +1,61 @@
+@charset "UTF-8";
+body {
+    background: #DFE4EE;
+    font-family: 'Lato', sans-serif;
+}
+
+#googleimage {
+    border-radius: 16px;
+    border-color: black;
+}
+
+.pictures {
+    display: flex;
+    flex-direction: row;
+    column-gap: 50px;
+}
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.button {
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+    border-color: #BBCCEE;
+    color: blue;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 16px;
+}
+
+.subbutton {
+    font-family: 'Lato', sans-serif;
+    background-color: white;
+    border-color: #BBCCEE;
+    border-style: outset;
+    color: blue;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 16px;
+}
+
+.button:hover {
+    font-family: 'Lato', sans-serif;
+    background-color: #acbbda;
+    color: blue;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 16px;
+}

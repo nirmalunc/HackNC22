@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="gamestyles.css">
+    <title>gamepagejg.html</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <h1>JiyaGuesser</h1>
+        <p style="font-weight: bold;">Click The Map On The Right To Guess!</p>
+    </div>
+    <div class="pictures">
+        <img id="googleimage" src="" width="720" height="356" alt="">
+        <div class="vertical">
+            <div id="mapimage">
+
+                <img id="pin" style="display: none;" src="img/pin.png" alt="pin" width="30" />
+
+            </div>
+
+            <script>
+                var xPosition;
+                var yPosition;
+                document.getElementById("mapimage").onclick = function clickEvent(event) {
+                    if (pin.style.display === "none") {
+                        pin.style.display = "block";
+                    }
+                    xPosition = event.clientX;
+                    yPosition = event.clientY;
+                    pin.style.left = (xPosition - 15) + "px";
+                    pin.style.top = (yPosition - 40) + "px";
+                }
+
+                function calculate() {
+                    var latguess = (-((yPosition - 115) / 1.5) + 90);
+                    var longuess = (((xPosition - 780) / 1.5) - 180);
+                    var R = 6371; // Radius of the earth in km
+                    var dLat = deg2rad(latimage - latguess); // deg2rad below
+                    var dLon = deg2rad(lonimage - longuess);
+                    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(deg2rad(latguess)) * Math.cos(deg2rad(latimage)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                    var d = Math.round(R * c); // Distance in km
+                    document.getElementById("myText").innerHTML = d;
+                    var text = document.getElementById("demo");
+                    if (text.style.display === "none") {
+                        text.style.display = "block";
+                    }
+                }
+
+                function deg2rad(deg) {
+                    return deg * (Math.PI / 180);
+                }
+            </script>
+            <button class="button" onclick="calculate()">Submit!</button>
+            <p id="demo" style='display: none;' onclick="calculate()">Your guess is: <span id="myText"></span> miles away!</p>
+            <button class="button" onclick="newLocation()">Try a New Location!</button>
+        </div>
+
+        <br>
+
+    </div>
+    <a href="index.html" class="subbutton">Exit Game</a>
+    <br>
+    <script defer>
+        const latarray = [39.5229563, 29.089, 6.69300833, 35.2456558, 7.6959782, 72.5737745, 36.4028477, -13.9037987, 27.9175731, 3.82899954, 19.2691813, 10.8346314, 41.1156378, 54.6467601, -10.5915273, -9.0510455, 38.2840575, 19.5363584, 35.2596719, -33.49617071, -45.73881, -33.67741679, -3.9921008, 31.1528577, 4.9800968, 25.1637199, 67.8653823, 14.0961113, 14.51241271, 69.4286423, -26.9106217, 28.835619, 25.0563073, 45.99556051, 37.9946698, 60.0108195];
+        const longarray = [22.5568472, 2.21, -1.54721245, -106.8708208, -4.9721067, -38.4708125, 94.9025081, 34.3435545, 90.6064082, -59.77360406, 72.8738214, -60.9092801, -5.998515, -8.2807286, -75.4168616, -51.0580114, -120.8623094, -155.5764566, -90.0640841, 138.61203949, 168.4423238, -71.23790152, 139.4897408, 53.9487031, -54.9848137, 55.6278163, 18.6592259, -60.9486122, -60.90526844, 91.3184586, -67.7496892, -82.3301468, -77.3590017, -108.00476962, -106.0732462, -111.8694967];
+        const random = Math.floor(Math.random() * latarray.length);
+        const latimage = latarray[random];
+        const lonimage = longarray[random];
+        var link = "https://maps.googleapis.com/maps/api/streetview?size=600x300&location=" + latimage + "," + lonimage + "&heading=151.78&pitch=-0.76&key=AIzaSyDgFdPA9vrvoyEFGOJkJUFCyILxBsFh_TU";
+        // document.getElementById("myText2").innerHTML = link;
+        // document.getElementById("myText3").innerHTML = lonimage;
+        document.getElementById("googleimage").src = link;
+
+        function newLocation() {
+            location.reload();
+        }
+    </script>
+</body>
+
+</html>

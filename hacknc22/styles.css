@@ -1,0 +1,19 @@
+#mapimage {
+    border: 5px black solid;
+    overflow: hidden;
+    background-image: url("img/map.jpg");
+    height: auto;
+    cursor: pointer;
+    background-size: 540px 267px;
+    height: 712px;
+    width: 1441px;
+    max-height: 267px;
+    max-width: 540px;
+    background-repeat: no-repeat;
+}
+
+#pin {
+    position: absolute;
+    cursor: pointer;
+    left: 1000px;
+}
